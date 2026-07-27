@@ -17,12 +17,12 @@ Tracks repeated mechanical errors across mock interviews to identify patterns.
 
 | Category | Count | Examples |
 |----------|-------|---------|
-| API recall | 5 | `string.size`, `from collections import heapq`, `heapop`, `queue.top()`, `len` |
+| API recall | 4 | `string.size`, wrong `heapq` import, `heapop`, `queue.top()` |
 | Loop structure | 2 | nested loops instead of sliding window, per-element instead of per-level BFS |
 | Boundary | 1 | missing bounds check on grid access |
 | Syntax | 1 | `rows` instead of `range(rows)` |
 
 ## Diagnosis
-**Primary gap: Python API fluency.** 5 of 9 bugs are wrong function/method names or import paths. This is mechanical, not conceptual. Fix: write templates from memory repeatedly until API calls are automatic.
+**Primary gap: Python API fluency.** 4 of 8 bugs are wrong function/method names or import paths. This is mechanical, not conceptual. Fix: write templates from memory repeatedly until API calls are automatic.
 
 **Secondary gap: BFS level-by-level loop.** The `for _ in range(len(queue))` pattern must become reflexive.

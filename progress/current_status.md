@@ -14,7 +14,7 @@ Interview: Thursday July 30. Two 45-min coding rounds.
 - BFS level-by-level loop structure
 - Clean first-pass implementation under time pressure
 
-## Interview-ready patterns (6 core)
+## Core Pattern Coverage
 
 | # | Pattern | Drilled | Mock tested | Confidence |
 |---|---------|---------|-------------|------------|
@@ -34,7 +34,7 @@ Interview: Thursday July 30. Two 45-min coding rounds.
 | 4 | 7/27 | LC 994 | Multi-source BFS | 7/10 |
 
 ## Repeated bug types
-1. API names (5 occurrences) — highest priority to fix
+1. API names (4 occurrences) — highest priority to fix
 2. Loop structure (2 occurrences)
 3. Bounds checking (1 occurrence)
 4. Syntax (1 occurrence)

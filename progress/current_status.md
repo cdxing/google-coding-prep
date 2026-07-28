@@ -1,46 +1,42 @@
-# Current Status — July 27, 2026 (evening update)
+# Current Status — July 28, 2026 (afternoon update)
 
 Interview: Thursday July 30. Two 45-min coding rounds.
 
 ## Strong
 - Pattern recognition: correctly identifies which pattern to use
 - Brute force → optimized reasoning flow
-- Delayed rewrites show significant improvement (LC 215: 6→10, LC 15: 4→7)
+- Delayed rewrites consistently effective (LC 215: 6→10, LC 3: 5→10, LC 200: 8→10, LC 133: 6→10)
 - Intervals pattern is clean (9/10 first attempt)
+- API recall resolved through 3-round drill (12→4→0 errors)
 - Behavioral and domain rounds (self-assessed 8-9/10)
 
-## Current bottleneck (updated)
+## Current bottleneck (updated 7/28)
 
-**P0: Problem semantics + first-pass pattern fidelity**
-- LC 209: misread "subarray" as "subset", solved wrong problem
-- Under pressure, may invoke adjacent-but-wrong pattern (e.g., prefix sum for 3Sum)
-- Must ask before coding: contiguous? ordered? positive/negative? duplicates?
+**P0: Translating algorithm to code structure.**
+LC 133 showed: understood the algorithm verbally but couldn't produce the function structure. Fix: recursive function IS the entry point. Design signature + base case before filling in body. Repaired in drill (10/10).
 
-**Co-P0: Python API recall**
-- Keeps inventing methods that don't exist: `.top()`, `.heapappend()`, `.push()`
-- 5 wrong attempts to call `set.add()` in one session
-- Container API must be automatic
+**P1: Problem semantics.**
+Must ask before coding: contiguous? ordered? positive/negative? duplicates?
 
-**P1: Loop structure and invariant**
-- Sliding window `while` shrink (remove s[left], then left += 1)
-- BFS level loop: `for _ in range(len(queue))`
-- 3Sum dedup: `continue` for i, `while` for left/right inside `else`
+**P1: Complexity explanation.**
+Graph = O(V+E). Sort-dominated = O(n log n). Sliding window = O(n). 3Sum = O(n²).
 
-**P1: Complexity explanation**
-- Sort-dominated = O(n log n), not O(n)
-- Sliding window = O(n), not O(n²)
-- 3Sum = O(n²)
+**P1: Communication length.**
+Clarification tends to run long. Compress to 4-5 sentences max.
 
 ## Core Pattern Coverage
 
 | # | Pattern | Drilled | Mock tested | Delayed rewrite | Confidence |
 |---|---------|---------|-------------|-----------------|------------|
 | 1 | HashMap / Prefix Sum | yes | - | - | high |
-| 2 | Sliding Window | yes | Mock 02 (7/10), drill (5/10) | pending | medium |
-| 3 | BFS / DFS | yes | Mock 04 (7/10), LC200 (8/10) | pending | medium |
-| 4 | Intervals | yes | drill (9/10) | - | high |
-| 5 | Heap / Top-K | yes | Mock 03 (9/10), drill (6→10/10) | done ✓ | high |
-| 6 | Two Pointers | yes | drill (4→7/10) | done ✓ | medium |
+| 2 | Sliding Window | yes | Mock 02 (7/10), drill3 (10/10) | done ✓ | high |
+| 3 | BFS multi-source | yes | Mock 04 (7/10), drill2 (8/10) | done ✓ | medium-high |
+| 4 | DFS flood-fill | yes | LC200 drill2 (10/10) | done ✓ | high |
+| 5 | DFS + hashmap (graph) | yes | Sim R2 (6/10), drill (10/10) | done ✓ | medium-high |
+| 6 | Intervals | yes | drill (9/10) | - | high |
+| 7 | Heap / Top-K | yes | Mock 03 (9/10), drill2 (10/10) | done ✓ | high |
+| 8 | Two Pointers / 3Sum | yes | drill2 (7/10) | done ✓ | medium |
+| 9 | Sweep Line | yes | Sim R1 (8/10) | - | high |
 
 ## All scores (chronological)
 
@@ -57,21 +53,42 @@ Interview: Thursday July 30. Two 45-min coding rounds.
 | 7/27 | LC 15 drill 2 | Two Pointers | 7/10 | delayed rewrite ↑ |
 | 7/27 | LC 215 drill 2 | Heap | 10/10 | delayed rewrite ↑ |
 | 7/27 | LC 209 mini mock | Sliding Window | 6/10 | subarray vs subset |
+| 7/27 | LC 3 drill 3 | Sliding Window | 10/10 | delayed rewrite ↑ |
+| 7/27 | LC 200 drill 2 | DFS | 10/10 | delayed rewrite ↑ |
+| 7/27 | LC 994 drill 2 | BFS | 8/10 | delayed rewrite ↑ |
+| 7/28 | LC 253 sim R1 | Sweep Line | 8/10 | independent, clean |
+| 7/28 | LC 133 sim R2 | DFS + hashmap | 6/10 | needed 4 hints |
+| 7/28 | LC 133 drill | DFS + hashmap | 10/10 | closed-book rewrite ↑ |
 
-## Plan: Tue 7/28
+## Readiness assessment
 
-**Warm-up (20 min, no notes)**
-- 3 skeleton templates: sliding window, BFS level, 3Sum
-- Write container API from memory
+```
+READY
+├─ HashMap / Two Sum
+├─ DFS flood-fill
+├─ Sliding window while-shrink
+├─ Heap Top-K
+├─ Merge Intervals
+└─ Sweep Line
 
-**Round 1 (45 min)** — unknown problem, full interview flow
-**15 min break**
-**Round 2 (45 min)** — different pattern, unknown problem
-**Debrief (30 min)** — score, update bug ledger, fix one worst issue
+MOSTLY READY
+├─ Multi-source BFS (needs one clean first-pass warm-up)
+├─ DFS + hashmap on graph (drilled to 10/10, not yet tested cold)
+└─ 3Sum (code ready, communication needs compression)
 
-## Plan: Wed 7/29
-- If both rounds ≥7: light taper, pattern cards only
-- If any round <7: 30 min fix on that one issue, then stop
+MAIN RISKS
+├─ problem-semantics misread under pressure
+├─ first-pass code structure for unfamiliar recursive problems
+├─ complexity explanation precision
+└─ communication verbosity
+```
+
+## Plan: Wed 7/29 (taper)
+
+Both simulation rounds ≥ 7 threshold not met (R2 = 6), but repaired to 10/10.
+- Morning: 30 min warm-up — BFS level loop + DFS graph clone from memory, then stop
+- Pattern cards light review
+- Rest
 
 ## Plan: Thu 7/30 — Interview
 - 15-20 min warm-up: 2 templates from memory, then stop
